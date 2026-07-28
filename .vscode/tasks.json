@@ -14,12 +14,25 @@
       "problemMatcher": []
     },
     {
+      "label": "Process images",
+      "type": "shell",
+      "command": "bash",
+      "args": [
+        "-lc",
+        "set -e; IMAGE_MAX_WIDTH=1600 IMAGE_MAX_HEIGHT=1200 IMAGE_QUALITY=85 IMAGE_OUTPUT_FORMAT='' python3 .vscode/process_images.py"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": []
+    },
+    {
       "label": "Commit and Push Images",
       "type": "shell",
       "command": "bash",
       "args": [
         "-lc",
-        "set -e; python3 .vscode/normalize_filenames.py; git add .; git commit -m \"Update images\"; git push"
+        "set -e; python3 .vscode/normalize_filenames.py; python3 .vscode/process_images.py; git add .; git commit -m \"Update images\"; git push"
       ],
       "options": {
         "cwd": "${workspaceFolder}"
