@@ -2,12 +2,24 @@
   "version": "2.0.0",
   "tasks": [
     {
+      "label": "Normalize filenames",
+      "type": "shell",
+      "command": "python3",
+      "args": [
+        "${workspaceFolder}/.vscode/normalize_filenames.py"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": []
+    },
+    {
       "label": "Commit and Push Images",
       "type": "shell",
       "command": "bash",
       "args": [
         "-lc",
-        "set -e; git add .; git commit -m \"Update images\"; git push"
+        "set -e; python3 .vscode/normalize_filenames.py; git add .; git commit -m \"Update images\"; git push"
       ],
       "options": {
         "cwd": "${workspaceFolder}"
